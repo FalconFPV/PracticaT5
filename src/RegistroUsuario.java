@@ -42,5 +42,23 @@ public class RegistroUsuario {
             }
             return false;
         }
+    
+        public static boolean compruebaPassword(String password) {
+            if (password.length() != 8) {
+                return false;
+            }
+            String regex = "^[A-Z][a-zA-Z0-9]*[@#_-][0-9]{2}$";
+            return password.matches(regex);
+        }
+        
+        public static String generaCodigoSeguridad() {
+            String caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#_-";
+            StringBuilder codigo = new StringBuilder();
+            for (int i = 0; i < 8; i++) {
+                int indice = RANDOM.nextInt(caracteres.length());
+                codigo.append(caracteres.charAt(indice));
+            }
+            return codigo.toString();
+        }
     }
 }
